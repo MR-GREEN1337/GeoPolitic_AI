@@ -1,6 +1,5 @@
 from crewai import Agent
 from crewai_tools import SerperDevTool
-from typing import List
 from langchain_groq import ChatGroq
 import os
 from dotenv import load_dotenv
@@ -18,7 +17,7 @@ class GeoPoliticsResearchAgents():
         os.environ["OPENAI_MODEL_NAME"] = "llama3-70b-8192"
         os.environ["OPENAI_API_KEY"] = os.getenv("GROQ_API_KEY")
 
-    def research_manager(self, regions: List[str], subjects: List[str]) -> Agent:
+    def research_manager(self, regions: list[str], subjects: list[str]) -> Agent:
         print("Research Agent of GeoPoltics")
         print(f"Regions of interest: {' '.join([region for region in regions])}")
         print(f"Subject of interest: {' '.join([subject for subject in subjects])}")

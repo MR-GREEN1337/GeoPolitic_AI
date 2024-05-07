@@ -1,4 +1,3 @@
-from typing import List
 from agents import GeoPoliticsResearchAgents
 from tasks import GeoPoliticsResearchTasks
 
@@ -8,7 +7,7 @@ class GeoPoliticsResearchCrew:
     def __init__(self):
         self.crew = None
     
-    def setup_crew(self, regions: List[str], subjects: List[str]):
+    def setup_crew(self, regions: list[str], subjects: list[str]):
  
         # SETUP AGENTS
         agents = GeoPoliticsResearchAgents()
