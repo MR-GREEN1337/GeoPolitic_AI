@@ -3,17 +3,20 @@ from crewai_tools import SerperDevTool
 from typing import List
 from langchain_groq import ChatGroq
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class GeoPoliticsResearchAgents():
     def __init__(self):
         print("Setting up GeoPoltics Agents")
         self.tools = [SerperDevTool()]
 
-        os.environ["SERPER_API_KEY"] = "8f67df02cc87f1fc8315f46f3b9eb95798b6f002"  # serper.dev API key
+        os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")  # serper.dev API key
 
         os.environ["OPENAI_API_BASE"] = "https://api.groq.com/openai/v1"
         os.environ["OPENAI_MODEL_NAME"] = "llama3-70b-8192"
-        os.environ["OPENAI_API_KEY"] = "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"
+        os.environ["OPENAI_API_KEY"] = os.getenv("GROQ_API_KEY")
 
     def research_manager(self, regions: List[str], subjects: List[str]) -> Agent:
         print("Research Agent of GeoPoltics")
