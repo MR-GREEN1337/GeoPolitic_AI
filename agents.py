@@ -13,7 +13,7 @@ class GeoPoliticsResearchAgents():
 
         os.environ["OPENAI_API_BASE"] = "https://api.groq.com/openai/v1"
         os.environ["OPENAI_MODEL_NAME"] = "llama3-70b-8192"
-        os.environ["OPENAI_API_KEY"] = "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"
+        os.environ["OPENAI_API_KEY"] = "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"
 
     def research_manager(self, regions: List[str], subjects: List[str]) -> Agent:
         print("Research Agent of GeoPoltics")
@@ -31,9 +31,9 @@ class GeoPoliticsResearchAgents():
             backstory="As a Geopolitics Research Manager, your main goal is to summarize given information and convey them wisely",
             tools = self.tools,
             verbose = True,
-            max_iter = 6,
+            max_iter = 1,
             memory=True,
-            max_rpm=2000
+            max_rpm=3000
         )
 
     def geopolitics_research_agent(self) -> Agent:
@@ -43,9 +43,9 @@ class GeoPoliticsResearchAgents():
         backstory="""As a Geopolitics Research Agent, you are responsable for Searching for VALID, RECENT INFO ABOUT GIVEN SUBJECTS AND REGIONS.""",
         tools = self.tools,
         verbose = True,
-        max_iter = 6,
+        max_iter = 1,
         memory=True,
-        max_rpm=2000
+        max_rpm=3000
 
 
     )

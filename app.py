@@ -49,6 +49,8 @@ while True:
 
 # Button to trigger API request
 if st.button("Submit"):
+    st.success(f"Request sent successfully.")
+
     # Placeholder for output
     output_placeholder = st.empty()
     # Display loading spinner
@@ -62,37 +64,11 @@ if st.button("Submit"):
         "subjects": subjects,
         "regions": regions
     }
-    
-    # POST request to send input data
-    post_response = requests.post(post_api_url, json=data)
-    
-    if post_response.status_code == 200:
-        job_id = post_response.json().get("job_id")
-        st.success(f"Request sent successfully.")
-        
-        # Polling loop to check job status
-        while True:
-            # GET request to check job status
-            get_api_url = f"http://localhost:8080/api/crew/{job_id}"
-            time.sleep(10)
-            get_response = requests.get(get_api_url)
-            #print(f"This is the response: {get_response.json()}")
-            if get_response.status_code == 200:
-                job_status = get_response.json().get("status")
 
-                if job_status == "COMPLETE":
-                    # Update placeholder with output data
-                    output_placeholder.write("Output:")
-                    output_placeholder.markdown(get_response.json()["result"])
-                    # Remove loading spinner
-                    spinner = None
-                    break  # Break the polling loop
-                elif job_status == "ERROR":
-                    st.error("Job encountered an error.")
-                    # Remove loading spinner
-                    spinner = None
-                    break  # Break the polling loop on error
-                else:
-                    continue  # Continue polling if job is not complete
-    else:
-        st.error("Failed to send request to the API.")
+
+    from crew import GeoPoliticsResearchCrew
+    geopolitics_research_crew = GeoPoliticsResearchCrew()
+    results = geopolitics_research_crew.setup_crew(regions, subjects)
+
+    output_placeholder.write("Output:")
+    output_placeholder.markdown(results)

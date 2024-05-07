@@ -1,16 +1,8 @@
-from job_manager import append_event
 from typing import List
 from crewai import Task, Agent
 from textwrap import dedent
 
 class GeoPoliticsResearchTasks():
-    def __init__(self, job_id: str):
-        self.job_id = job_id
-
-    def append_event_callback(self, task_output: str):
-        print(f"Appending event for {self.job_id} with output {task_output}")
-        append_event(self.job_id, task_output)
-    
     def geopolitics_research(self, agent: Agent, region: str, subjects: list[str]):
         return Task(
         description=dedent(f"""Given the region '{region}' and the subjects {subjects},
@@ -20,7 +12,6 @@ class GeoPoliticsResearchTasks():
         expected_output=dedent(
             """A json object containing the URLs for blog articles talking about the subject"""
         ),
-        callback=self.append_event_callback,
         async_exection=True,
     )
 
@@ -34,6 +25,5 @@ class GeoPoliticsResearchTasks():
             expected_output=dedent(
                 """A markdown object containing the geopolitics new of the this week"""
             ),
-            callback=self.append_event_callback,
             context=tasks
         )
