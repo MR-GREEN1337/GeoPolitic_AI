@@ -1,5 +1,4 @@
 import streamlit as st
-import requests
 import time
 
 # Define the navigation links
@@ -47,7 +46,6 @@ while True:
     else:
         break
 
-# Button to trigger API request
 if st.button("Submit"):
     st.success(f"Request sent successfully.")
 
@@ -56,8 +54,6 @@ if st.button("Submit"):
     # Display loading spinner
     spinner = st.spinner("Waiting for output...")
     
-    # API endpoint for POST request
-    post_api_url = "http://localhost:8080/api/crew"
     
     # Input data
     data = {

@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "geopolitic-ai"
+version = "0.1.0"
+description = ""
+authors = ["ISLAM HACHIMI <94931434+MR-GREEN1337@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<=3.13"
+crewai = "^0.28.8"
+crewai-tools = "^0.2.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
